@@ -1713,3 +1713,20 @@ h1, h2, .section-title {
 @media (max-width: 768px) {
   .footer-copy { text-align: center; }
 }
+
+/* Crédito no fim da página */
+.footer-copy { text-align: inherit; }
+
+.footer-bottom {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.footer-credit {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: #93bbfd;
+}
