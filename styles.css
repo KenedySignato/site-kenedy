@@ -1697,3 +1697,19 @@ h1, h2, .section-title {
     width: calc(50% - 8px);
   }
 }
+
+.footer-copy {
+  text-align: right;
+}
+
+.footer-credit {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #93bbfd;
+}
+
+@media (max-width: 768px) {
+  .footer-copy { text-align: center; }
+}
