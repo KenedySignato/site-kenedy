@@ -1391,3 +1391,182 @@ img {
     font-size: 0.66rem;
   }
 }
+
+/* ==================== IDENTIDADE v2 ==================== */
+/* Paleta oficial: #05070D · #0B1F3A · #1457FF */
+:root {
+  --bg-void: #05070d;
+  --accent-grad: linear-gradient(135deg, #3b76ff 0%, #1457ff 55%, #0d43d1 100%);
+}
+
+::selection {
+  background: var(--accent-blue);
+  color: #ffffff;
+}
+
+html {
+  scrollbar-color: #1a3a6e var(--bg-void);
+  scrollbar-width: thin;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-blue-bright);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Monograma da marca (substitui o ponto) */
+.brand-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--accent-grad);
+  box-shadow: 0 6px 18px rgba(20, 87, 254, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-dot::after {
+  content: 'KS';
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+/* Fundo com mais profundidade */
+body {
+  background-image:
+    radial-gradient(circle at 12% 6%, rgba(20, 87, 254, 0.2) 0%, transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(11, 31, 58, 0.7) 0%, transparent 46%),
+    radial-gradient(circle at 50% 70%, rgba(20, 87, 254, 0.09) 0%, transparent 52%),
+    radial-gradient(circle at 10% 95%, rgba(11, 31, 58, 0.55) 0%, transparent 40%);
+}
+
+/* Títulos com mais presença */
+.hero-title,
+.section-title,
+.cta-title {
+  letter-spacing: -0.035em;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(120deg, #ffffff 0%, #a9c6ff 35%, #3b76ff 70%, #1457ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Traço de assinatura acima dos títulos de seção */
+.section-header .eyebrow {
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 4px;
+  background: var(--accent-grad);
+  box-shadow: 0 0 18px rgba(20, 87, 254, 0.6);
+}
+
+.section-header.center .section-title::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Botões com brilho */
+.btn-primary,
+.btn-whatsapp-full,
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-primary::before,
+.btn-whatsapp-full::before,
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover::before,
+.btn-whatsapp-full:hover::before,
+.nav-cta:hover::before {
+  transform: translateX(120%);
+}
+
+/* Retrato do hero com borda luminosa */
+.hero-portrait-frame {
+  border-color: transparent;
+  background:
+    linear-gradient(160deg, var(--bg-navy) 0%, var(--bg-void) 100%) padding-box,
+    linear-gradient(150deg, #3b76ff 0%, rgba(20, 87, 254, 0.15) 45%, #1457ff 100%) border-box;
+  border: 1.5px solid transparent;
+}
+
+/* Cards com realce superior no hover */
+.pillar-card::before,
+.person-card::before,
+.process-step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  z-index: 4;
+  background: linear-gradient(90deg, transparent, #3b76ff, transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.pillar-card:hover::before,
+.person-card:hover::before,
+.process-step:hover::before {
+  opacity: 1;
+}
+
+.step-index {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Revelar ao rolar (ativado por script.js; sem JS tudo fica visível) */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js-reveal .reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js-reveal .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

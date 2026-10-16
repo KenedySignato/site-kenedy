@@ -25,6 +25,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Destaque do link ativo conforme a seção visível
+  const sectionLinks = [...navLinks.querySelectorAll('a[href^="#"]')];
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      sectionLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sectionLinks.forEach(a => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) spy.observe(target);
+  });
+
+  // Revelar elementos ao rolar
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-reveal');
+    const revealSelector = '.section-header, .pillar-card, .timeline-card, .person-card, .brand-card, .process-step, .about-grid > *, .cta-box';
+    const reveal = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(revealSelector).forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', `${(i % 4) * 70}ms`);
+      reveal.observe(el);
+    });
+  }
+
   // Filter Tabs for "Pessoas que Somei" (Brasil vs EUA)
   const filterBtns = document.querySelectorAll('.filter-btn');
   const personCards = document.querySelectorAll('.person-card');
