@@ -1570,3 +1570,33 @@ body {
     transform: none;
   }
 }
+
+/* Ajustes de ritmo e legibilidade */
+.hero-title,
+.section-title,
+.cta-title {
+  letter-spacing: -0.026em;
+  word-spacing: 0.06em;
+}
+
+.hero-title {
+  line-height: 1.14;
+}
+
+.section {
+  padding: 92px 0;
+}
+
+/* Fotos de "Pessoas que somei" mais compactas (rosto continua no enquadramento) */
+.person-photo-wrap {
+  aspect-ratio: 1 / 0.8;
+}
+
+.person-photo-wrap img {
+  object-position: center 20%;
+}
+
+.about-main-card img {
+  aspect-ratio: 1 / 1.05;
+  object-position: center top;
+}
