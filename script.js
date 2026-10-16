@@ -10,33 +10,67 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       navbar.classList.remove('scrolled');
     }
-  });
+  }, { passive: true });
 
-  // Mobile Menu Toggle
+  // Mobile Menu Toggle + Close on Outside Click / Escape
   if (mobileMenuBtn && navLinks) {
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    };
+
+    mobileMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-      });
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('open') && !navbar.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+      }
     });
   }
 
   // Destaque do link ativo conforme a seção visível
-  const sectionLinks = [...navLinks.querySelectorAll('a[href^="#"]')];
-  const spy = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      sectionLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
+  const sectionLinks = navLinks ? [...navLinks.querySelectorAll('a[href^="#"]')] : [];
+  if ('IntersectionObserver' in window && sectionLinks.length) {
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        sectionLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${entry.target.id}`));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+
+    sectionLinks.forEach(a => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) spy.observe(target);
     });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  sectionLinks.forEach(a => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) spy.observe(target);
-  });
+  }
+
+  // Ocultar botão flutuante do WhatsApp quando a seção #contato estiver visível (evita sobreposição no mobile)
+  const whatsappFloat = document.querySelector('.whatsapp-float');
+  const contatoSection = document.getElementById('contato');
+  if ('IntersectionObserver' in window && whatsappFloat && contatoSection) {
+    const floatObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        whatsappFloat.classList.toggle('is-hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.15 });
+    floatObserver.observe(contatoSection);
+  }
 
   // Revelar elementos ao rolar
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
