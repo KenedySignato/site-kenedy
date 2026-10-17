@@ -91,16 +91,28 @@
   }
 
   /* ---------- entradas: títulos (wipe) ---------- */
+  // o título só é escondido (classe "anim") quando este código roda;
+  // se o JS falhar ou não carregar, os títulos continuam visíveis
   const animated = $$('.cut-in');
   if (hasIO && !reduceMotion) {
+    const show = el => el.classList.add('is-in');
+    // observa o bloco em volta do título: o título em si começa recortado (clip-path)
+    const owner = new Map(animated.map(el => [el.parentElement, el]));
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
+        show(owner.get(entry.target));
         obs.unobserve(entry.target);
       });
-    }, { threshold: 0.35 });
-    animated.forEach(el => io.observe(el));
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    document.documentElement.classList.add('anim');
+    owner.forEach((_, box) => io.observe(box));
+    // garantia: o que já passou da tela (clique no menu, página reaberta no meio) aparece sem esperar
+    const catchUp = () => animated.forEach(el => {
+      if (!el.classList.contains('is-in') && el.parentElement.getBoundingClientRect().top < innerHeight * 0.92) show(el);
+    });
+    addEventListener('scroll', () => requestAnimationFrame(catchUp), { passive: true });
+    addEventListener('load', catchUp);
   } else {
     animated.forEach(el => el.classList.add('is-in'));
   }
