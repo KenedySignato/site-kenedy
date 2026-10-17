@@ -199,4 +199,4 @@ O `index.html` já usa `https://kenedysignato.com.br/` no link canônico, na ima
 
 ## Créditos
 
-© Kenedy Signato. Site por Kenedy Signato e Gabriel Stuginski.
+© 2026 Kenedy Signato. By Gabriel Stuginski.
