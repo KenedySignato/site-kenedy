@@ -108,7 +108,7 @@ Cada aba tem um botão (`class="track"`) e um painel (`class="panel"`), ligados 
 Para editar, mexa só no conteúdo do painel (imagem, `<h3>`, `<p>` e a lista `chips`).
 
 ### Etapas de "Como funciona"
-Cada `<li class="step" style="--w:62%">` tem uma barrinha azul. O `--w` controla o tamanho dela, só por estética.
+Cada etapa é um `<li class="step">` com número (`step__n`), título (`<h3>`) e texto (`<p>`).
 
 ---
 
@@ -162,7 +162,7 @@ As regras para telas menores estão no fim do `styles.css`, em "RESPONSIVO": `10
 Depois de qualquer mudança, teste também no celular ou no modo celular do navegador (F12 → ícone de celular).
 
 ### Animações
-- Os títulos do topo, os títulos das seções (`cut-in`) e as barras das etapas entram com animação ao aparecer na tela.
+- Os títulos do topo e os títulos das seções (`cut-in`) entram com animação ao aparecer na tela.
 - Quem ativou "reduzir movimento" no sistema vê tudo parado. Isso é automático, no fim do `styles.css`.
 - Sem JavaScript, todo o conteúdo continua aparecendo.
 

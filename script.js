@@ -90,8 +90,8 @@
     requestAnimationFrame(tick);
   }
 
-  /* ---------- entradas: títulos (wipe) e clipes do método ---------- */
-  const animated = $$('.cut-in, .steps');
+  /* ---------- entradas: títulos (wipe) ---------- */
+  const animated = $$('.cut-in');
   if (hasIO && !reduceMotion) {
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
