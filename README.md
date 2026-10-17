@@ -91,6 +91,7 @@ Copie um bloco `<li class="person">…</li>` dentro de `#people`:
 ```
 
 `data-region` define o filtro: `br` para Brasil e `usa` para EUA.
+No celular (até 560px), a descrição do que foi feito fica escondida e aparecem só o local, o nome e o nicho. Isso fica no fim do `styles.css`.
 
 ### Adicionar ou remover uma marca
 Copie um `<li class="brand">…</li>` em uma das duas faixas (`data-dir="left"` ou `data-dir="right"`):

@@ -640,6 +640,8 @@ ul, ol { list-style: none; }
   .person { grid-template-columns: 88px minmax(0, 1fr); gap: 16px; padding: 22px 0; }
   .person img { width: 88px; height: 88px; }
   .person h3 { font-size: 1.5rem; }
+  .person p:not(.person__niche) { display: none; } /* no celular, só nome, local e nicho */
+  .person__niche { margin-bottom: 0; }
   .facts { grid-template-columns: minmax(0, 1fr); }
   .facts div { padding: 12px 0 0; }
   .steps { grid-template-columns: minmax(0, 1fr); }
