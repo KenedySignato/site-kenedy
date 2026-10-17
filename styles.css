@@ -205,12 +205,14 @@ ul, ol { list-style: none; }
   align-items: center;
 }
 
+.hero__text { container-type: inline-size; }
 .hero__title {
-  font-size: clamp(3.4rem, 9.2vw, 8.25rem);
+  font-size: clamp(3.4rem, 9.2vw, 8.25rem);  /* reserva para navegador antigo */
+  font-size: clamp(2.6rem, 17.5cqi, 8.25rem); /* acompanha a largura da coluna: cada linha cabe inteira */
   line-height: 0.9;
   margin-bottom: 28px;
 }
-.cut { display: block; }
+.cut { display: block; white-space: nowrap; }
 .cut--blue { color: var(--blue); }
 
 .hero__lead { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--muted); max-width: 44ch; margin-bottom: 32px; }
@@ -601,6 +603,7 @@ ul, ol { list-style: none; }
   .nav__links a[aria-current="true"]::before { display: none; }
 
   .hero__grid, .panel, .about, .cta__grid { grid-template-columns: minmax(0, 1fr); }
+  .hero__title { font-size: clamp(2.6rem, 15cqi, 5.5rem); }
   .viewfinder { max-width: 460px; width: 100%; }
   .panel img { order: 0; max-height: 440px; aspect-ratio: 4 / 4.2; }
   .about__photo { max-width: 420px; }
