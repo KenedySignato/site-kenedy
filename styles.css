@@ -196,7 +196,7 @@ ul, ol { list-style: none; }
 /* =========================================================
    HERO
    ========================================================= */
-.hero { padding: calc(var(--nav-h) + clamp(40px, 7vw, 96px)) 0 clamp(64px, 9vw, 120px); }
+.hero { padding: calc(var(--nav-h) + clamp(28px, 4vw, 56px)) 0 clamp(40px, 5vw, 72px); }
 
 .hero__grid {
   display: grid;
@@ -286,9 +286,11 @@ ul, ol { list-style: none; }
 /* =========================================================
    SEÇÕES
    ========================================================= */
-.section { padding: clamp(80px, 11vw, 150px) 0; }
+.section { padding: clamp(52px, 6.5vw, 96px) 0; }
+/* duas seções seguidas com o mesmo fundo: não soma o espaço das duas */
+.section:not(.section--strip):not(.section--brands) + .section:not(.section--strip):not(.section--brands) { padding-top: clamp(12px, 2vw, 32px); }
 
-.head { margin-bottom: clamp(36px, 5vw, 64px); max-width: 760px; }
+.head { margin-bottom: clamp(24px, 3.2vw, 44px); max-width: 760px; }
 .head--row {
   max-width: none;
   display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap;
@@ -301,7 +303,7 @@ ul, ol { list-style: none; }
 /* ---------- faixas de edição (V1/V2/A1) ---------- */
 .tracks__tabs {
   border-top: 1px solid var(--line);
-  margin-bottom: clamp(32px, 4vw, 48px);
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
 .track {
   width: 100%;
@@ -535,7 +537,7 @@ ul, ol { list-style: none; }
     radial-gradient(circle at 85% 85%, rgba(20, 87, 255, 0.22) 0%, transparent 45%),
     linear-gradient(160deg, #0d2650 0%, var(--navy) 55%, #07101f 100%);
   border-top: 1px solid var(--line);
-  color: #fff; padding: clamp(80px, 11vw, 140px) 0;
+  color: #fff; padding: clamp(56px, 7vw, 96px) 0;
 }
 .cta__grid {
   display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -569,7 +571,7 @@ ul, ol { list-style: none; }
 .cta__art img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
 
 /* ---------- rodapé ---------- */
-.foot { padding: 48px 0 56px; border-top: 1px solid var(--line); }
+.foot { padding: 36px 0 44px; border-top: 1px solid var(--line); }
 .foot__row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 .foot__insta {
   display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600;
