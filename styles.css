@@ -57,10 +57,20 @@ html {
 }
 
 body {
-  background: var(--ink);
+  background: transparent;
   font-size: 1.0625rem;
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+/* fundo: fade do preto para o azul, com brilhos azuis suaves (fixo, não rola) */
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 6%, rgba(20, 87, 255, 0.22) 0%, transparent 42%),
+    radial-gradient(circle at 88% 30%, rgba(20, 87, 255, 0.12) 0%, transparent 46%),
+    radial-gradient(ellipse at 50% 110%, rgba(20, 87, 255, 0.18) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ink) 0%, #07101f 55%, var(--navy) 100%);
 }
 
 [hidden] { display: none !important; }
@@ -120,7 +130,7 @@ ul, ol { list-style: none; }
    ========================================================= */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 1000;
-  background: rgba(5, 7, 13, 0.94);
+  background: rgba(5, 9, 20, 0.88);
   border-bottom: 1px solid var(--line);
 }
 .nav__row { display: flex; align-items: center; gap: 28px; height: 64px; }
@@ -441,7 +451,7 @@ ul, ol { list-style: none; }
 @keyframes pop { from { opacity: 0; transform: translateY(6px); } }
 
 /* ---------- marcas em rolagem ---------- */
-.section--brands { background: var(--ink-2); border-block: 1px solid var(--line); }
+.section--brands { background: rgba(10, 15, 28, 0.5); border-block: 1px solid var(--line); }
 .reel {
   display: grid; gap: 14px;
   overflow: hidden;
