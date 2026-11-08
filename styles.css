@@ -520,6 +520,66 @@ ul, ol { list-style: none; }
 .step h3 { font-size: 1.6rem; line-height: 1.05; margin-bottom: 10px; }
 .step p { color: var(--muted); }
 
+/* ---------- Google Meu Negócio ---------- */
+.gmn {
+  background:
+    radial-gradient(circle at 30% 50%, rgba(0, 229, 200, 0.08) 0%, transparent 50%),
+    var(--ink-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.gmn__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.gmn__text { max-width: 520px; }
+.gmn__title {
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  line-height: .95;
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.gmn__lead {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-bottom: 24px;
+  max-width: 44ch;
+}
+.gmn__visual {
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(24px, 4vw, 48px);
+  border-radius: 16px;
+  border: 1px solid var(--line-strong);
+  background: var(--ink);
+  text-align: center;
+}
+.gmn__icon {
+  font-size: 4rem; line-height: 1; margin-bottom: 12px;
+}
+.gmn__icon-label {
+  font-size: 1.1rem; color: var(--muted);
+}
+.chips--cyan li {
+  border-color: #00e5c8;
+  color: #00e5c8;
+}
+.btn--cyan {
+  background: #00e5c8;
+  color: var(--ink);
+  font-weight: 700;
+}
+.btn--cyan:hover {
+  background: #00c9af;
+  transform: translateY(-2px);
+}
+.gmn__text .btn { margin-top: 8px; }
+@media (max-width: 820px) {
+  .gmn__grid { grid-template-columns: minmax(0, 1fr); }
+  .gmn__visual { display: none; }
+}
+
 /* ---------- shorts ---------- */
 .shorts__track {
   display: flex; gap: 20px;
