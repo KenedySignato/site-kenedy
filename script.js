@@ -138,6 +138,23 @@
     });
   });
 
+  /* ---------- shorts: setas de navegação ---------- */
+  const shortsTrack = $('#shortsTrack');
+  const shortsPrev = $('#shortsPrev');
+  const shortsNext = $('#shortsNext');
+  if (shortsTrack && shortsPrev && shortsNext) {
+    const shortsStep = () => (shortsTrack.querySelector('.shorts__item')?.getBoundingClientRect().width || 220) * 2 + 40;
+    const updateShortsArrows = () => {
+      shortsPrev.disabled = shortsTrack.scrollLeft < 8;
+      shortsNext.disabled = shortsTrack.scrollLeft + shortsTrack.clientWidth > shortsTrack.scrollWidth - 8;
+    };
+    shortsPrev.addEventListener('click', () => shortsTrack.scrollBy({ left: -shortsStep(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+    shortsNext.addEventListener('click', () => shortsTrack.scrollBy({ left: shortsStep(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+    shortsTrack.addEventListener('scroll', updateShortsArrows, { passive: true });
+    addEventListener('resize', updateShortsArrows);
+    updateShortsArrows();
+  }
+
   /* ---------- rolo de filme: setas + arrastar com o mouse ---------- */
   const film = $('#filmTrack');
   const prev = $('#stripPrev');
@@ -204,11 +221,20 @@
     reel.classList.add('is-running');
   }
 
-  /* ---------- contato: mensagem do WhatsApp conforme a escolha ---------- */
-  const waPick = $('#waPick');
-  $$('input[name="foco"]').forEach(r => r.addEventListener('change', () => {
-    waPick.href = `https://wa.me/5565993068512?text=${encodeURIComponent(r.value)}`;
-  }));
+  /* ---------- contato: formulário de diagnóstico → WhatsApp ---------- */
+  const diagForm = $('#diagForm');
+  if (diagForm) {
+    diagForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const d = new FormData(diagForm);
+      const msg = `Olá Kenedy! Vi seu site e quero meu diagnóstico gratuito.\n\n` +
+        `Nome: ${d.get('nome')}\n` +
+        `Área: ${d.get('area')}\n` +
+        `Produz conteúdo: ${d.get('conteudo')}\n` +
+        `Interesse: ${d.get('interesse')}`;
+      window.open(`https://wa.me/5565993068512?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  }
 
   /* ---------- esconde o botão flutuante na seção de contato ---------- */
   const waFloat = $('#waFloat');
